@@ -11,6 +11,8 @@ public class CandidatRestApi {
     public String title="Hello from candidat4TWIN3";
     @Autowired
     private ICandidat _candidat;
+    @Autowired
+    public CandidatService candidSer;
     @RequestMapping("/hello")
     public String getTitle()    {
         return title;
@@ -42,5 +44,14 @@ public class CandidatRestApi {
     @DeleteMapping("/{id}")
     public void deleteCandidat(@PathVariable int id) {
         _candidat.deleteCandidat(id);
+    }
+
+    @GetMapping("/jobs")
+    public List<Job> getJobsListe() {
+        return candidSer.getJobsList();
+    }
+    @GetMapping("/jobs/{id}")
+    public Job getJobById(@PathVariable("id") int id) {
+        return candidSer.getJobById(id);
     }
 }

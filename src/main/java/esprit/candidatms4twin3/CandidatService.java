@@ -10,7 +10,8 @@ public class CandidatService implements ICandidat {
 
     @Autowired
     private CandidatRepository candidatRepo;
-
+    @Autowired
+    public JobClient jClient;
     @Override
     public List<Candidat> allCandidat() {
         return candidatRepo.findAll();
@@ -41,5 +42,12 @@ public class CandidatService implements ICandidat {
     @Override
     public void deleteCandidat(int id) {
         candidatRepo.deleteById(id);
+    }
+
+    public List<Job> getJobsList() {
+        return jClient.getJobs();
+    }
+    public Job getJobById(int id) {
+        return jClient.getJob(id);
     }
 }
